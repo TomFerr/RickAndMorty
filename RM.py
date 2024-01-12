@@ -58,9 +58,16 @@ while True:
 
 	# Show random character
 	if selection == 21:
-		number = random.randint(0,19)
-		showCharacterInfo(number)
-		print('\n')
+		# Full random for when we have 20 characters
+		if current_page != 42:
+			number = random.randint(0,19)
+			showCharacterInfo(number)
+			print('\n')
+		# Reduced random for the last page with only 6 characters
+		else:
+			number = random.randint(0,5)
+			showCharacterInfo(number)
+			print('\n')
 
 	# Show next page
 	elif selection == 22:
@@ -91,6 +98,11 @@ while True:
 
 	# Checking for a valid input
 	elif selection > 24 or selection < 0:
+		print("\nPlease insert a valid number.\n")
+		showPageCharacters(current_page)
+
+	# Check for valid input if on last page
+	elif current_page == 42 and selection > 6 and selection < 21:
 		print("\nPlease insert a valid number.\n")
 		showPageCharacters(current_page)
 
